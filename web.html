@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        #background video {
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        .container {
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.2);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #loginForm h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        #loginForm input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #loginForm .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        #loginForm button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(90deg, #ff105f, #ffad06);
+        }
+
+        #loginForm button:hover {
+            transform: scale(1.05);
+            animation: bounce 0.5s infinite;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="background">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="space.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container">
+        <form id="loginForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <h2>Login</h2>
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <div class="button-container">
+                <button type="submit" name="login">Login</button>
+                <button type="button" id="createAccountBtn">Create Account</button>
+            </div>
+        </form>
+    </div>
+
+    <php
+    if (isset($_POST['login.php'])) {
+        // Retrieve the username and password from the form
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Perform any necessary validation or authentication here
+        // ...
+
+        // Example of checking if the username        // and password are correct
+        if ($username === 'admin' && $password === 'password') {
+            // Successful login
+            echo 'Welcome, ' . $username . '!'; // Replace with appropriate action
+        } else {
+            // Invalid credentials
+            echo 'Invalid username or password.'; // Replace with appropriate action
+        }
+    }
+    ?>
+</body>
+</html>
+

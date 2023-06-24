@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अफ्नो डाटा</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>अफ्नो डाटा हाल मुर्खा</h1>
+
+    <form name="registerForm" action="" onsubmit="return validateForm()" method="post">
+        <input type="text" name="fname" id="fname" placeholder="Enter first name">
+        <br>
+        <input type="text" name="lname" id="lname" placeholder="Enter last name">
+        <br>
+        <input type="number" name="phone" id="phone" placeholder="Enter phone no">
+        <br>
+        <input type="email" name="email" id="email" placeholder="Enter email">
+        <br>
+        <input type="text" name="uname" id="uname" placeholder="Enter username">
+        <br>
+        <input type="password" name="password" id="password" placeholder="Enter password">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var letters = /^[A-Za-z]+$/; // letters only
+            var fname = document.forms["registerForm"]["fname"];
+            var password = document.forms["registerForm"]["password"];
+            var uname = document.getElementById("uname");
+
+            if (fname.value === "") {
+                showError(fname, "First Name must be filled out");
+                return false;
+            }
+
+            if (password.value.length < 8) {
+                showError(password, "Password must be at least 8 characters");
+                return false;
+            }
+
+            if (!uname.value.match(letters)) {
+                showError(uname, "Username must have alphabet characters only");
+                return false;
+            }
+
+            return true;
+        }
+
+        function showError(input, message) {
+            var errorElement = document.createElement("div");
+            errorElement.className = "error";
+            errorElement.innerText = message;
+            input.parentNode.insertBefore(error.element, input.nextSibling);
+            input.parentNode.appendChild(errorElement);
+            input.classList.add("error-input");
+}
+</script>
+
+</body>
+</html>
+```

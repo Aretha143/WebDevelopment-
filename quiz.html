@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+</head>
+<body>
+    <div id="quiz-container"></div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Berlin", "Madrid"],
+                answer: "Paris"
+            },
+            {
+                question: "What is the highest mountain in the world?",
+                options: ["Mount Everest", "K2", "Makalu", "Lhotse"],
+                answer: "Mount Everest"
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Venus", "Saturn", "Jupiter", "Mars"],
+                answer: "Jupiter"
+            }
+        ];
+
+        function displayQuestion(index) {
+            const questionContainer = document.getElementById("quiz-container");
+
+            const questionData = quizData[index];
+            const question = questionData.question;
+            const options = questionData.options;
+
+            let html = `<h2>${question}</h2>`;
+
+            options.forEach((option, optionIndex) => {
+                html += `
+                    <input type="radio" name="answer" value="${option}">
+                    <label>${option}</label>
+                    <br>
+                `;
+            });
+
+            html += `<button onclick="checkAnswer(${index})">Submit Answer</button>`;
+
+            questionContainer.innerHTML = html;
+        }
+
+        function checkAnswer(index) {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (selectedOption) {
+                const userAnswer = selectedOption.value;
+                const correctAnswer = quizData[index].answer;
+
+                if (userAnswer === correctAnswer) {
+                    console.log("Correct!");
+                } else {
+                    console.log("Sorry, that's not the right answer. Please try again.");
+                }
+            }
+        }
+
+        displayQuestion(0);
+    </script>
+</body>
+</html>

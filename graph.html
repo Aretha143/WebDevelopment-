@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criteria Weights Bar Graph</title>
+    <style>
+        #chart {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script>
+        // Criteria weights
+        var weights = [10, 15, 25, 30, 10, 10];
+
+        // Criteria labels
+        var labels = [
+            'Criteria 1',
+            'Criteria 2',
+            'Criteria 3',
+            'Criteria 4',
+            'Criteria 5',
+            'Criteria 6'
+        ];
+
+        // Creating the bar graph
+        var chart = document.getElementById('chart');
+
+        for (var i = 0; i < weights.length; i++) {
+            var bar = document.createElement('div');
+            bar.style.width = weights[i] + '%';
+            bar.style.height = '40px';
+            bar.style.backgroundColor = 'steelblue';
+            bar.style.marginBottom = '10px';
+            chart.appendChild(bar);
+
+            var label = document.createElement('span');
+            label.textContent = labels[i] + ' (' + weights[i] + '%)';
+            chart.appendChild(label);
+        }
+    </script>
+</body>
+</html>
